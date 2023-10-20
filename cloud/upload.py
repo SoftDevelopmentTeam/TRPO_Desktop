@@ -1,23 +1,24 @@
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+import os
 
 # Авторизация
 gauth = GoogleAuth()
-gauth.LocalWebserverAuth() # Откроет окно браузера для авторизации
+gauth.LocalWebserverAuth()
 
 # Создаем объект GoogleDrive
 drive = GoogleDrive(gauth)
 
-# Создаем файл в корневой папке
-#file1 = drive.CreateFile({'title': 'Пример.txt'})
-#file1.Upload()
+# Указываем путь к папке с файлами
+local_folder_path = 'FileUpToDrive'
 
-#print('Файл создан с id:', file1.get('id'))
+# Получаем список файлов в локальной папке
+local_files = os.listdir(local_folder_path)
 
-# Получаем список файлов
-file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
+# Загружаем файлы на Google Диск
+for file_name in local_files:
+    file_path = os.path.join(local_folder_path, file_name)
+    drive_file = drive.CreateFile({'title': file_name, 'parents': [{'id': 'root'}]})
+    drive_file.Upload()
 
-# Выводим информацию о файлах
-print("Список файлов:")
-for file in file_list:
-    print('Название: %s, ID: %s' % (file['title'], file['id']))
+print(f'Загружено {len(local_files)} файлов на Google Диск.')
