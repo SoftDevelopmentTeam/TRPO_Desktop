@@ -18,7 +18,7 @@ def upload_file_to_drive(drive, local_file_path, folder):
     return file_drive['id']
 
 def download_all_files_from_drive(drive, local_folder_path, folder):
-    file_list = drive.ListFile({'q': f"'{folder['id']}' in parents and trashed=false"}).GetList()
+    file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(folder['id'])}).GetList()
     for file_drive in file_list:
         local_file_path = os.path.join(local_folder_path, file_drive['title'])
         if 'exportLinks' in file_drive:
@@ -34,9 +34,9 @@ def download_file_from_drive(drive, file_id, local_file_path):
     file_drive.GetContentFile(local_file_path)
 
 def list_files_in_drive(drive, folder):
-    file_list = drive.ListFile({'q': f"'{folder['id']}' in parents and trashed=false"}).GetList()
+    file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format(folder['id'])}).GetList()
     for index, file_drive in enumerate(file_list, 1):
-        print(f'{index}. Имя файла: {file_drive["title"]}, ID: {file_drive["id"]}')
+        print('{} Имя файла: {}, ID: {}'.format(index, file_drive["title"], file_drive["id"]))
     return file_list
 
 def main():
@@ -59,14 +59,14 @@ def main():
                 if os.path.exists(upload_option):
                     if os.path.isfile(upload_option):
                         file_id = upload_file_to_drive(drive, upload_option, folder)
-                        print(f"Файл '{os.path.basename(upload_option)}' успешно загружен. ID файла на Google Диске: {file_id}")
+                        print("Файл '{}' успешно загружен. ID файла на Google Диске: {}".format(os.path.basename(upload_option), file_id))
                     elif os.path.isdir(upload_option):
                         for root, dirs, files in os.walk(upload_option):
                             for file_name in files:
                                 local_file_path = os.path.join(root, file_name)
-                                print(f"Загружается файл '{file_name}'...")
+                                print("Загружается файл '{}'...".format(file_name))
                                 file_id = upload_file_to_drive(drive, local_file_path, folder)
-                                print(f"Файл '{file_name}' успешно загружен. ID файла на Google Диске: {file_id}")
+                                print("Файл '{}' успешно загружен. ID файла на Google Диске: {}".format(file_name, file_id))
                     else:
                         print("Указанный путь не является ни файлом, ни папкой.")
                 else:
@@ -75,7 +75,7 @@ def main():
             elif action == 'a':
                 local_folder_path = os.path.join(os.getcwd(), 'download')
                 download_all_files_from_drive(drive, local_folder_path, folder)
-                print(f"Все файлы успешно скачаны.")
+                print("Все файлы успешно скачаны.")
 
             elif action.isdigit():
                 download_option = int(action)
@@ -83,7 +83,7 @@ def main():
                     file_id = file_list[download_option - 1]['id']
                     local_file_path = os.path.join(os.getcwd(), 'download', file_list[download_option - 1]['title'])
                     download_file_from_drive(drive, file_id, local_file_path)
-                    print(f"Файл успешно скачан.")
+                    print("Файл успешно скачан.")
                 else:
                     print("Неверный номер файла.")
 
