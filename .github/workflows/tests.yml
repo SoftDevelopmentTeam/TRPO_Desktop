@@ -16,4 +16,5 @@ jobs:
         name: pytest_logs
         path: |
           test_logs.md
+          htmlcov
         retention-days: 1

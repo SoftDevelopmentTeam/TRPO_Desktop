@@ -3,4 +3,4 @@ services:
   tests:
     build: .
     image: testing
-    command: pytest
+    command: pytest --cov=app --cov-report=html
