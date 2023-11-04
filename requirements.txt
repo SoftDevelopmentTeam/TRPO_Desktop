@@ -3,3 +3,4 @@ bs4
 openpyxl
 lxml
 PyQt5
+pydrive
