@@ -4,5 +4,5 @@ services:
     build: .
     image: testing
     volumes:
-      - .
+      - .:/home
     command: pytest --cov=app --cov-report=html
