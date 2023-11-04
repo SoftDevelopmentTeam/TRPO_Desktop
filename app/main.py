@@ -27,6 +27,8 @@ class Main(QtWidgets.QMainWindow):
                                                              "Сохранить файл",
                                                              ".",
                                                              "Xlsx Files (*.xlsx)")
+        if filename == '':
+            return
         data = parser.get_phones_data(parser.parse_text(url))
         book.main(data, platform, filename)
 
