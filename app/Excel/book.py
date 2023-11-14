@@ -1,5 +1,5 @@
 from openpyxl import Workbook as book
-from .Sheets import phones
+from .Sheets import sheets
 
 
 def create_book():
@@ -10,15 +10,15 @@ def save_book(work_book, path):
     work_book.save(path)
 
 
-def create_phone_sheet(work_book, platform, data):
-    work_sheet = phones.create_sheet(work_book, platform)
-    phones.set_size(work_sheet)
-    phones.set_titles(work_sheet, platform)
-    phones.set_data(work_sheet, data)
-    phones.set_styles(work_sheet, data)
+def create_sheet(work_book, data):
+    work_sheet = sheets.create_sheet(work_book, data.platform)
+    sheets.set_size(work_sheet, data)
+    sheets.set_titles(work_sheet, data)
+    sheets.set_data(work_sheet, data)
+    sheets.set_styles(work_sheet, data)
 
 
-def main(data, platform, path):
+def main(data, path):
     work_book = create_book()
-    create_phone_sheet(work_book, platform, data)
+    create_sheet(work_book, data)
     save_book(work_book, path)
