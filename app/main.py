@@ -46,7 +46,7 @@ class Main(QtWidgets.QMainWindow):
     def open_win_1(self):
         try:
             g_drive = drive.connect_to_google_drive()
-        except:
+        except Exception:
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно пройти аутентификацию!")
             return
         self.win_1 = Win1(g_drive)
@@ -67,7 +67,7 @@ class Win1(QtWidgets.QMainWindow):
             folder_id = self.parse_url(url)
             g_folder = drive.connect_to_folder(self.g_drive, folder_id)
             self.win_2 = Win2(self.g_drive, g_folder)
-        except:
+        except Exception:
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Введите ссылку на папку!")
             return
         self.win_2.show()
