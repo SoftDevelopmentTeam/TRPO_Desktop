@@ -15,8 +15,9 @@ def create_sheet(work_book, data):
 def set_size(work_sheet, data):
     column_name_list = data[1]
     number_columns = len(column_name_list)
+    column_numbers = range(number_columns)
 
-    for column_number in range(number_columns):
+    for column_number in column_numbers:
         column_width = 0
 
         for row_list in data[1:]:
@@ -52,29 +53,29 @@ def set_styles(work_sheet, data):
     number_rows = len(data)
     column_name_list = data[1]
     number_columns = len(column_name_list)
-    row_numbers_list = range(2, (number_rows + 1))
-    column_numbers_list = range(1, (number_columns + 1))
+    row_numbers = range(2, (number_rows + 1))
+    column_numbers = range(1, (number_columns + 1))
 
     align = styles.alignment()
     work_sheet['A1'].alignment = align
-    for row_number in row_numbers_list:
-        for column_number in column_numbers_list:
+    for row_number in row_numbers:
+        for column_number in column_numbers:
             work_sheet.cell(row=row_number, column=column_number).alignment = align
 
     title_font = styles.title_font()
     work_sheet['A1'].font = title_font
-    for column_number in column_numbers_list:
+    for column_number in column_numbers:
         work_sheet.cell(row=2, column=column_number).font = styles.title_font()
 
     border = styles.border('bottom')
-    for column_number in column_numbers_list:
+    for column_number in column_numbers:
         work_sheet.cell(row=1, column=column_number).border += border
         work_sheet.cell(row=2, column=column_number).border += border
         work_sheet.cell(row=number_rows, column=column_number).border += border
 
     border = styles.border('right')
     work_sheet.cell(row=1, column=number_columns).border += border
-    for column_number in column_numbers_list:
+    for column_number in column_numbers:
         work_sheet.cell(row=2, column=column_number).border += border
-    for row_number in row_numbers_list:
+    for row_number in row_numbers:
         work_sheet.cell(row=row_number, column=number_columns).border += border
