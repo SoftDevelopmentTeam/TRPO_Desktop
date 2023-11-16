@@ -21,7 +21,7 @@ class Main(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.ui.pushButton_BtnAlfandega_2.clicked.connect(lambda: self.create_book('Android', url_android))
         self.ui.pushButton_BtnAlfandega_7.clicked.connect(lambda: self.create_book('IOS', url_ios))
-        self.ui.pushButton_BtnAlfandega_11.clicked.connect(lambda: self.create_book('AI', url_ai))
+        self.ui.pushButton_BtnAlfandega_10.clicked.connect(lambda: self.create_book('AI', url_ai))
         self.ui.pushButton_Android.clicked.connect(lambda: self.set_page(1))
         self.ui.pushButton_IOS.clicked.connect(lambda: self.set_page(2))
         self.ui.pushButton_AI.clicked.connect(lambda: self.set_page(3))

@@ -1,5 +1,5 @@
 from openpyxl import Workbook as book
-from .Sheets import sheets
+from .Sheets import sheet
 
 
 def create_book():
@@ -11,11 +11,11 @@ def save_book(work_book, path):
 
 
 def create_sheet(work_book, data):
-    work_sheet = sheets.create_sheet(work_book, data.platform)
-    sheets.set_size(work_sheet, data)
-    sheets.set_titles(work_sheet, data)
-    sheets.set_data(work_sheet, data)
-    sheets.set_styles(work_sheet, data)
+    work_sheet = sheet.create_sheet(work_book, data)
+    sheet.set_size(work_sheet, data)
+    sheet.set_titles(work_sheet, data)
+    sheet.set_data(work_sheet, data)
+    sheet.set_styles(work_sheet, data)
 
 
 def main(data, path):
