@@ -20,8 +20,8 @@ def test_parse_text_data(url):
     assert len(headers) != 0
 
 
-@pytest.mark.parametrize('url', [('https://www.antutu.com/en/ranking/rank1.htm'),
-                                 ('https://www.antutu.com/en/ranking/ios1.htm')])
+# @pytest.mark.parametrize('url', [('https://www.antutu.com/en/ranking/rank1.htm'),
+#                                  ('https://www.antutu.com/en/ranking/ios1.htm')])
 # def test_get_phones_data(url):
 #     table = parser.get_phones_data(parser.parse_text(url))
 #     assert type(table) == dict
