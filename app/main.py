@@ -54,9 +54,9 @@ class Main(QtWidgets.QMainWindow):
         font.setBold(True)
         font.setUnderline(True)
         font.setItalic(True)
-        if(index == 1):
+        if index == 1:
             self.ui.pushButton_Android.setFont(font)
-        elif(index == 2):
+        elif index == 2:
             self.ui.pushButton_IOS.setFont(font)
         else:
             self.ui.pushButton_AI.setFont(font)
