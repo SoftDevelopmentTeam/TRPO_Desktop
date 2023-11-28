@@ -28,7 +28,6 @@ class Main(QtWidgets.QMainWindow):
         self.ui.pushButton_BtnAlfandega_3.clicked.connect(lambda: self.open_win_1())
         self.ui.pushButton_BtnAlfandega_8.clicked.connect(lambda: self.open_win_1())
         self.ui.pushButton_BtnAlfandega_11.clicked.connect(lambda: self.open_win_1())
-        
 
     def create_book(self, platform, url):
         filename, ok = QtWidgets.QFileDialog.getSaveFileName(self,
@@ -52,7 +51,6 @@ class Main(QtWidgets.QMainWindow):
         self.ui.pushButton_Android.setFont(font)
         self.ui.pushButton_IOS.setFont(font)
         self.ui.pushButton_AI.setFont(font)
-
         font.setBold(True)
         font.setUnderline(True)
         font.setItalic(True)
