@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  tests:
+    build: ..
+    image: testing
+    volumes:
+      - ..:/home/
+    command: pytest --cov=app --cov-report term --cov-report html -s

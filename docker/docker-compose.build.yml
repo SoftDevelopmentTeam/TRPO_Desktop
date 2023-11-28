@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  building:
+    build: ..
+    image: building
+    volumes:
+      - ..:/home/
+    command: pyinstaller --onefile -w /home/app/main.py
