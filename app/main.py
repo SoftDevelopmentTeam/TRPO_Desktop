@@ -10,7 +10,6 @@ from cloud import google_drive_operations as drive
 from PyQt5.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem
 
 
-
 url_android = 'https://www.antutu.com/en/ranking/rank1.htm'
 url_ios = 'https://www.antutu.com/en/ranking/ios1.htm'
 url_ai = 'https://www.antutu.com/en/ranking/ai1.htm'
@@ -143,30 +142,23 @@ class Win2(QtWidgets.QMainWindow):
         self.win_1.show()
         self.close()
 
+
 class Table(QMainWindow):
     def __init__(self, platform, url):
         super().__init__()
-
         data = parser.get_data(parser.parse_text(url), platform)
-
         self.setWindowTitle(platform)
         self.setGeometry(100, 100, 1000, 400)
-
         self.table = QTableWidget(self)
         self.setCentralWidget(self.table)
-
         self.table.setColumnCount(len(data[1]))
         self.table.setColumnWidth(1, 400)
-
         if platform == 'AI':
             self.table.setColumnWidth(2, 200)
             self.table.setColumnWidth(3, 200)
-
         self.table.horizontalHeader().setVisible(False)
         self.table.verticalHeader().setVisible(False)
-
         self.table.setRowCount(len(data[1:]))
-
         for row in range(1, len(data)):
             print(row)
             for i in range(len(data[1])):
