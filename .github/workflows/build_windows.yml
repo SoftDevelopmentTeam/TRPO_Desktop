@@ -21,4 +21,13 @@ jobs:
     - name: Build
       run: |
         pyinstaller --onefile -w app/main.py
+        copy app/client_secrets.json dist/
         dir ./dist
+
+    - name: Archive production artifacts coverage
+      uses: actions/upload-artifact@v3
+      with:
+        name: main
+        path: |
+          dist/
+        retention-days: 1
