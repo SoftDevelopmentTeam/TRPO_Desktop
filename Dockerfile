@@ -1,4 +1,4 @@
-FROM python:3.9-bullseye
+FROM python:3.12.0-windowsservercore-ltsc2022
 
 ADD ./requirements.txt /home/
 RUN pip install -r /home/requirements.txt
