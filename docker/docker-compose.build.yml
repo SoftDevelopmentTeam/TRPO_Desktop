@@ -4,5 +4,5 @@ services:
     build: ..
     image: building
     volumes:
-      - ..:/home/
+      - ..:.
     command: pyinstaller --onefile -w -n main.exe /home/app/main.py
