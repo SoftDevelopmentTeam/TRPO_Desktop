@@ -946,7 +946,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.TextLable_OC.setText(_translate("MainWindow", "Ranking"))
+        self.TextLable_OC.setText(_translate("MainWindow", "TRPO_Desktop"))
         self.pushButton_Android.setText(_translate("MainWindow", "Android"))
         self.pushButton_IOS.setText(_translate("MainWindow", "IOS"))
         self.pushButton_AI.setText(_translate("MainWindow", "AI"))

@@ -3,4 +3,5 @@ app/Parser/__pycache__
 app/Excel/__pycache__
 app/Excel/Sheets/__pycache__
 app/Excel/Sheets/Styles/__pycache__
+app/cloud/__pycache__
 tests/__pycache__

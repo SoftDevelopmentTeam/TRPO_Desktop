@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  building:
+    build: ..
+    image: building
+    volumes:
+      - ..:.
+    command: pyinstaller --onefile -w -n TRPO /home/app/main.py
