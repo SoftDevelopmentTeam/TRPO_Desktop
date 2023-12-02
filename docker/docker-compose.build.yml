@@ -5,4 +5,4 @@ services:
     image: building
     volumes:
       - ..:.
-    command: pyinstaller --onefile -w -n main.exe /home/app/main.py
+    command: pyinstaller --onefile -w -n TRPO /home/app/main.py
