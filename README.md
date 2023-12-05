@@ -18,7 +18,23 @@ sudo ./build.sh
 
 ## Сборка Windows
 
-Сборка осуществляется с помощью **GitHub Actions**. Необходимо выполнить следующие шаги
+Сборка осуществляется с помощью **GitHub Actions**. Необходимо сделать fork данного репозитория и выполнить следующие шаги
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/a346046f-eb56-4cd3-a63c-9e8f30a6809c)
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/2454868b-475d-4883-981a-3dbd6a014290)
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/f9bbf0a5-1690-484f-a79f-809011c03af6)
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/2ee2dd99-4760-4e56-afbd-8747fc224b0b)
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/f5342075-c76f-41da-b380-e7e14fa9645b)
+
+После выполнения вышеуказанных шагов запустится пайплайн сборки. После его выполнения нужно скачать следующий архив
+
+![image](https://github.com/RiMikheev/TRPO_Desktop/assets/122991783/8745c569-40e9-46e4-b4ea-2382854f23ce)
+
+Нельзя перемещать исполняемый файл отдельно от **client_secrets.json**, так как он необходим для корректной работы Google Drive
 
 ## Запуск тестов
 
