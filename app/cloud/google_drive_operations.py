@@ -5,7 +5,7 @@ import os
 
 class GDrive:
     @staticmethod
-    def connect_to_google_drive():
+    def connect_to_drive():
         gauth = GoogleAuth()
         gauth.LocalWebserverAuth()
         drive = GoogleDrive(gauth)
@@ -37,7 +37,7 @@ class GDrive:
 class GoogleAdapter:
     def __init__(self, google_drive):
         self.drive_obj = google_drive
-        self.drive = self.drive_obj.connect_to_google_drive()
+        self.drive = self.drive_obj.connect_to_drive()
         self.folder = None
 
     def connect_to_folder(self, folder_id):
