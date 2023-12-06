@@ -42,12 +42,12 @@ class GoogleAdapter:
 
     def connect_to_folder(self, folder_id):
         self.folder = self.drive_obj.connect_to_folder(self.drive, folder_id)
-    
+
     def upload_file_to_drive(self, local_file_path):
         self.drive_obj.upload_file_to_drive(self.drive, local_file_path, self.folder)
-    
+
     def download_file_from_drive(self, file_id, local_file_path):
         self.drive_obj.download_file_from_drive(self.drive, file_id, local_file_path)
-    
+
     def list_files_in_drive(self):
         return self.drive_obj.list_files_in_drive(self.drive, self.folder)

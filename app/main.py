@@ -132,13 +132,13 @@ class Win2(QtWidgets.QMainWindow):
         if path_to_folder == '':
             return
         try:
-            local_file_path = os.path.join(path_to_folder, file_list[int(num)-1]['title'])
+            local_file_path = os.path.join(path_to_folder, file_list[int(num) - 1]['title'])
         except Exception as e:
             print(e)
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Неверный номер документа!")
             return
         try:
-            self.g_drive.download_file_from_drive(file_list[int(num)-1]['id'], local_file_path)
+            self.g_drive.download_file_from_drive(file_list[int(num) - 1]['id'], local_file_path)
         except Exception as e:
             print(e)
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно скачать файл!")
