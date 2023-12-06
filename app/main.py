@@ -43,6 +43,7 @@ class Main(QtWidgets.QMainWindow):
             return
         data = parser.get_data(parser.parse_text(url), platform)
         book.main(data, filename)
+        QtWidgets.QMessageBox.information(self, "Information", "Успешно!")
 
     def set_page(self, index):
         self.button_set_down(index)
@@ -68,8 +69,9 @@ class Main(QtWidgets.QMainWindow):
 
     def open_win_1(self):
         try:
-            g_drive = drive.connect_to_google_drive()
-        except Exception:
+            g_drive = drive.GoogleAdapter(drive.GDrive())
+        except Exception as e:
+            print(e)
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно пройти аутентификацию!")
             return
         self.win_1 = Win1(g_drive)
@@ -92,9 +94,10 @@ class Win1(QtWidgets.QMainWindow):
         url = self.ui.lineEdit.text()
         try:
             folder_id = self.parse_url(url)
-            g_folder = drive.connect_to_folder(self.g_drive, folder_id)
-            self.win_2 = Win2(self.g_drive, g_folder)
-        except Exception:
+            self.g_drive.connect_to_folder(folder_id)
+            self.win_2 = Win2(self.g_drive)
+        except Exception as e:
+            print(e)
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Введите ссылку на папку!")
             return
         self.win_2.show()
@@ -106,13 +109,12 @@ class Win1(QtWidgets.QMainWindow):
 
 
 class Win2(QtWidgets.QMainWindow):
-    def __init__(self, g_drive, g_folder):
+    def __init__(self, g_drive):
         self.g_drive = g_drive
-        self.g_folder = g_folder
         QtWidgets.QMainWindow.__init__(self)
         self.ui = Ui_MainWindow_win_2()
         self.ui.setupUi(self)
-        file_list = drive.list_files_in_drive(g_drive, g_folder)
+        file_list = g_drive.list_files_in_drive()
         text = ''
         for index, file_drive in enumerate(file_list, 1):
             text += '{}. {}\n'.format(index, file_drive["title"])
@@ -122,11 +124,26 @@ class Win2(QtWidgets.QMainWindow):
         self.ui.pushButton_BtnAlfandega_5.clicked.connect(lambda: self.open_win_1())
 
     def download_file(self, file_list):
+        num = self.ui.lineEdit.text()
+        if num == '':
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Введите номер документа!")
+            return
         path_to_folder = QtWidgets.QFileDialog.getExistingDirectory(self, "Выберите папку")
         if path_to_folder == '':
             return
-        local_file_path = os.path.join(path_to_folder, file_list[2]['title'])
-        drive.download_file_from_drive(self.g_drive, file_list[2]['id'], local_file_path)
+        try:
+            local_file_path = os.path.join(path_to_folder, file_list[int(num)-1]['title'])
+        except Exception as e:
+            print(e)
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Неверный номер документа!")
+            return
+        try:
+            self.g_drive.download_file_from_drive(file_list[int(num)-1]['id'], local_file_path)
+        except Exception as e:
+            print(e)
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно скачать файл!")
+            return
+        QtWidgets.QMessageBox.information(self, "Information", "Успешно!")
 
     def upload_file(self):
         filename, ok = QtWidgets.QFileDialog.getOpenFileName(self,
@@ -135,7 +152,13 @@ class Win2(QtWidgets.QMainWindow):
                                                              "Xlsx Files (*.xlsx)")
         if filename == '':
             return
-        drive.upload_file_to_drive(self.g_drive, filename, self.g_folder)
+        try:
+            self.g_drive.upload_file_to_drive(filename)
+        except Exception as e:
+            print(e)
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно загрузить файл!")
+            return
+        QtWidgets.QMessageBox.information(self, "Information", "Успешно!")
 
     def open_win_1(self):
         self.win_1 = Win1(self.g_drive)
