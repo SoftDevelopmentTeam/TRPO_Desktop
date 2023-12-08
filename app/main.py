@@ -69,7 +69,7 @@ class Main(QtWidgets.QMainWindow):
 
     def open_win_1(self):
         try:
-            g_drive = drive.GoogleAdapter(drive.GDrive())
+            g_drive = drive.Adapter(drive.GDrive())
         except Exception as e:
             print(e)
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно пройти аутентификацию!")

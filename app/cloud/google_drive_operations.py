@@ -34,9 +34,9 @@ class GDrive:
         return file_list
 
 
-class GoogleAdapter:
-    def __init__(self, google_drive):
-        self.drive_obj = google_drive
+class Adapter:
+    def __init__(self, g_drive):
+        self.drive_obj = g_drive
         self.drive = self.drive_obj.connect_to_drive()
         self.folder = None
 
